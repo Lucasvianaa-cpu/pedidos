@@ -1,0 +1,3 @@
+Banco: bd_login
+
+Precisa criar o banco e executar a SQL deixada aqui
