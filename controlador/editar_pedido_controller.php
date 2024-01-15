@@ -15,15 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmtAtualizarPedido->bindParam(':id', $pedidoId, PDO::PARAM_INT);
 
         if ($stmtAtualizarPedido->execute()) {
-            // Redirecione para a página de visualização do pedido após a atualização
             header("Location: ../templates/dashboard.php");
             exit;
         } else {
-            // Lidar com erro ao atualizar o pedido
             echo "Erro ao atualizar o pedido.";
         }
     } else {
-        // Lidar com dados ausentes
         echo "Dados do pedido ausentes.";
     }
 } else {

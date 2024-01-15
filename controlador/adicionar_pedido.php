@@ -4,7 +4,6 @@ include('../config/config.php');
 
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtém as informações do formulário
     $cliente_id = $_POST["cliente_id"];
     $quantidade_itens = $_POST["quantidade_itens"];
 
@@ -14,14 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtPedido->bindParam(":cliente_id", $cliente_id);
     $stmtPedido->execute();
 
-    // Obtém o ID do pedido recém-inserido
+    // Obtém o ULTIMO ID de PEDIDOS
     $pedido_id = $conexao->lastInsertId();
 
-    // Agora você pode redirecionar para uma página onde o usuário pode adicionar itens ao pedido
     header("Location: ../templates/adicionar_itens.php?pedido_id=$pedido_id&quantidade_itens=$quantidade_itens");
     exit();
 } else {
-    // Se o formulário não foi enviado, redireciona para a página de registrar pedido
     header("Location: ../templates/registrar_pedido.php");
     exit();
 }

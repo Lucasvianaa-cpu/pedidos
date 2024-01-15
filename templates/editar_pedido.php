@@ -1,4 +1,3 @@
-<!-- editar_pedido.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Editar Pedido</title>
-    <!-- Inclua os arquivos Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
-   <!-- Barra de navegação -->
    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #f8f9fa;">
         <a class="navbar-brand" href="#">Sistema de Pedidos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,12 +86,11 @@
                     </div>
                 </div>
 
-                <!-- Adicione a lista de itens abaixo do formulário -->
                 <div class="card mt-4">
                     <div class="card-body">
                         <h5 class="card-title">Itens do Pedido</h5>
                         <?php
-                        // Query para obter todos os itens do pedido
+                        // todos itens pedidos
                         $queryItensPedido = "SELECT itempedido.id, itempedido.quantidade, itempedido.valor_produto, itempedido.pedido_id, produtos.nome AS nome_produto
                              FROM itempedido
                              INNER JOIN produtos ON itempedido.produto_id = produtos.id
@@ -105,7 +101,7 @@
                         $stmtItensPedido->execute();
                         $itensPedido = $stmtItensPedido->fetchAll(PDO::FETCH_ASSOC);
 
-                        // Exibir a lista de itens do pedido
+                        // Listagem dos itens no pedido
                         echo "<table class='table'>
                             <thead>
                                 <tr>
@@ -151,7 +147,6 @@
         </div>
     </div>
 
-    <!-- Adicione os scripts do Bootstrap (copie o código da sua barra de navegação existente) -->
 </body>
 
 </html>

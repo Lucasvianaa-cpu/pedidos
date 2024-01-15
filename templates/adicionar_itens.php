@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Adicionar Itens ao Pedido</title>
 
-    <!-- Inclua os arquivos Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -14,8 +13,6 @@
 </head>
 
 <body>
-
-    <!-- Barra de navegação -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #f8f9fa;">
         <a class="navbar-brand" href="#">Sistema de Pedidos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,14 +46,14 @@
                         <form action="../controlador/processar_itens.php" method="post">
                             <input type="hidden" name="pedido_id" value="<?php echo $_GET['pedido_id']; ?>">
                             <?php
-                            // Lógica para obter produtos do banco de dados
+
                             include('../config/config.php');
                             $queryProdutos = "SELECT id, nome, preco_venda FROM produtos";
                             $stmtProdutos = $conexao->prepare($queryProdutos);
                             $stmtProdutos->execute();
                             $produtos = $stmtProdutos->fetchAll(PDO::FETCH_ASSOC);
 
-                            // Exibe uma lista de produtos
+                            // Lista dos produtos
                             echo "<div class='form-group'>";
                             echo "<label for='produto_id'>Produto:</label>";
                             echo "<select class='form-control' id='produto_id' name='produto_id' required>";
@@ -67,7 +64,6 @@
                             echo "</select>";
                             echo "</div>";
 
-                            // Campo para a quantidade
                             echo "<div class='form-group'>";
                             echo "<label for='quantidade'>Quantidade:</label>";
                             echo "<input type='number' class='form-control' id='quantidade' name='quantidade' required>";
@@ -105,14 +101,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('verPedidoBtn').addEventListener('click', function() {
-                console.log('Clicou no botão!'); // Adicione este log para debug
+                console.log('Clicou no botão!'); 
 
                 var queryString = window.location.search;
                 var urlParams = new URLSearchParams(queryString);
                 var pedidoId = urlParams.get('pedido_id');
 
                 if (pedidoId) {
-                    console.log('ID do pedido:', pedidoId); // Adicione este log para debug
+                    console.log('ID do pedido:', pedidoId); 
                     window.location.href = 'visualizar_pedido.php?id=' + pedidoId;
                 } else {
                     console.error('ID do pedido não encontrado na URL.');
@@ -124,9 +120,7 @@
 
 
     <script>
-        // Adiciona um evento de clique ao botão
         document.getElementById('voltar').addEventListener('click', function() {
-            // Redireciona para a página visualizar_pedido.php com o ID do pedido
             window.location.href = 'dashboard.php';
         });
     </script>

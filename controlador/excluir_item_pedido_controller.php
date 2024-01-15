@@ -2,6 +2,7 @@
 <?php
 include('../config/config.php');
 
+//VALIDAÇÃO SE O ID VEIO PELO METODO GET NA URL
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $itemId = $_GET['id'];
 
@@ -13,28 +14,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $resultPedidoId = $stmtPedidoId->fetch(PDO::FETCH_ASSOC);
 
     if ($resultPedidoId) {
-        // Exclua o item do pedido
+        // Excluindo Item do Pedido
         $queryExcluirItemPedido = "DELETE FROM itempedido WHERE id = :id";
         $stmtExcluirItemPedido = $conexao->prepare($queryExcluirItemPedido);
         $stmtExcluirItemPedido->bindParam(':id', $itemId, PDO::PARAM_INT);
 
         if ($stmtExcluirItemPedido->execute()) {
 
-            // Atualiza o valor total do pedido
+            // Atualiza o valor total do pedido, se excluir o item, deve atualizar o valor total de PEDIDOS
             $queryAtualizarValorTotal = "UPDATE pedidos SET valor_total = (SELECT SUM(valor_produto) FROM itempedido WHERE pedido_id = :pedido_id) WHERE id = :pedido_id";
             $stmtAtualizarValorTotal = $conexao->prepare($queryAtualizarValorTotal);
             $stmtAtualizarValorTotal->bindParam(":pedido_id", $resultPedidoId['pedido_id'], PDO::PARAM_INT);
             $stmtAtualizarValorTotal->execute();
 
-            // Redirecione para a página de visualização do pedido após a exclusão
             header("Location: ../templates/editar_pedido.php?id=" . $resultPedidoId['pedido_id']);
             exit;
         } else {
-            // Lidar com erro ao excluir o item do pedido
             echo "Erro ao excluir o item do pedido.";
         }
     } else {
-        // Lidar com erro ao obter o ID do pedido antes de excluir o item do pedido
         echo "Erro ao obter o ID do pedido.";
     }
 } else {

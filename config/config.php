@@ -1,10 +1,9 @@
 <?php
 
-// Configurações do banco de dados
-$host = 'localhost'; // endereço do banco de dados
-$usuario = 'root'; // nome de usuário do banco de dados
-$senha = ''; // senha do banco de dados
-$banco = 'bd_pedidos'; // nome do banco de dados
+$host = 'localhost'; 
+$usuario = 'root'; 
+$senha = ''; 
+$banco = 'bd_pedidos'; 
 
 try {
     $conexao = new PDO("mysql:host=$host;dbname=$banco", $usuario, $senha);

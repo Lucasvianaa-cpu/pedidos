@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Registrar-se</title>
-
-    <!-- Inclua os arquivos Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -22,7 +20,6 @@
                     <div class="card-header text-center">Registrar-se</div>
                     <div class="card-body">
                         <form action="../controlador/cadastra_user.php" method="post">
-                            <!-- Adicione os campos necessários para o registro -->
                             <div class="form-group">
                                 <label for="nome">Nome:</label>
                                 <input type="text" class="form-control" id="nome" name="nome" required>

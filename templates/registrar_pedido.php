@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Registrar Pedido</title>
 
-    <!-- Inclua os arquivos Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -15,7 +14,6 @@
 
 <body>
 
-    <!-- Barra de navegação -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #f8f9fa;">
         <a class="navbar-brand" href="#">Sistema de Pedidos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +47,6 @@
                         <form action="../controlador/adicionar_pedido.php" method="post">
                             <div class="form-group">
                                 <label for="cliente_id">Cliente:</label>
-                                <!-- Buscar os clientes do banco de dados -->
                                 <?php
                                 include('../config/config.php');
 
@@ -68,7 +65,6 @@
                                 echo "</select>";
                                 ?>
                             </div>
-                            <!-- Removendo o campo de quantidade_itens -->
                             <button type="submit" class="btn btn-primary">Registrar Pedido</button>
                         </form>
                     </div>

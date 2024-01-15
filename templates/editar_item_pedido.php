@@ -1,4 +1,3 @@
-<!-- editar_item_pedido.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Editar Item do Pedido</title>
-    <!-- Inclua os arquivos Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
-    <!-- Barra de navegação -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #f8f9fa;">
         <a class="navbar-brand" href="#">Sistema de Pedidos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,13 +47,13 @@
                         if ($itemId) {
                             $queryEditarItemPedido = "
                             SELECT 
-            itempedido.id, 
-            itempedido.quantidade, 
-            itempedido.valor_produto, 
-            produtos.preco_venda
-        FROM itempedido
-        INNER JOIN produtos ON itempedido.produto_id = produtos.id
-        WHERE itempedido.id = :id";
+                            itempedido.id, 
+                            itempedido.quantidade, 
+                            itempedido.valor_produto, 
+                            produtos.preco_venda
+                            FROM itempedido
+                            INNER JOIN produtos ON itempedido.produto_id = produtos.id
+                            WHERE itempedido.id = :id";
                             $stmtEditarItemPedido = $conexao->prepare($queryEditarItemPedido);
                             $stmtEditarItemPedido->bindParam(':id', $itemId, PDO::PARAM_INT);
                             $stmtEditarItemPedido->execute();
@@ -102,7 +99,6 @@
         </div>
     </div>
 
-    <!-- Adicione os scripts do Bootstrap (copie o código da sua barra de navegação existente) -->
 </body>
 
 </html>

@@ -1,10 +1,9 @@
 <?php
-// Inclua o arquivo de configuração
 include('../config/config.php');
 
-// Verifica se o formulário foi enviado
+// Formulario Enviado?
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtém os dados do formulário
+    // Dados
     $nome = $_POST["nome"];
     $email = $_POST["email"];
     $usuario = $_POST["usuario"];
@@ -21,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(":usuario", $usuario);
     $stmt->bindParam(":senha", $senhaHash);
 
-    // Executa a inserção
     try {
         $stmt->execute();
         // Redireciona para a página de login após o registro bem-sucedido
@@ -33,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 } else {
-    // Se o formulário não foi enviado, redireciona para a página de registro
     header("Location: ../templates/cadastrar.php");
     exit();
 }

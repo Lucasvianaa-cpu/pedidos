@@ -6,38 +6,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 
     if ($pedidoId) {
         try {
-            // Iniciar uma transação para garantir atomicidade das operações
             $conexao->beginTransaction();
 
-            // Excluir registros relacionados na tabela itempedido
+            // Excluir registros relacionados na tabela itempedido (TABELA FILHA)
             $queryExcluirItensPedido = "DELETE FROM itempedido WHERE pedido_id = :pedido_id";
             $stmtExcluirItensPedido = $conexao->prepare($queryExcluirItensPedido);
             $stmtExcluirItensPedido->bindParam(':pedido_id', $pedidoId, PDO::PARAM_INT);
             $stmtExcluirItensPedido->execute();
 
-            // Excluir o próprio pedido
+            // Excluir o próprio pedido (TABELA PAI)
             $queryExcluirPedido = "DELETE FROM pedidos WHERE id = :id";
             $stmtExcluirPedido = $conexao->prepare($queryExcluirPedido);
             $stmtExcluirPedido->bindParam(':id', $pedidoId, PDO::PARAM_INT);
             
             if ($stmtExcluirPedido->execute()) {
-                // Commit da transação se tudo estiver bem
+                // Se tudo der certo, commit
                 $conexao->commit();
 
-                // Resposta de sucesso
                 echo json_encode(['success' => true]);
                 exit;
             } else {
-                // Se ocorrer um erro, rollback da transação
                 $conexao->rollBack();
 
-                // Resposta de erro
                 http_response_code(500);
                 echo json_encode(['success' => false, 'message' => 'Erro ao excluir pedido']);
                 exit;
             }
         } catch (PDOException $e) {
-            // Se ocorrer um erro durante a transação, rollback e resposta de erro
             $conexao->rollBack();
 
             http_response_code(500);

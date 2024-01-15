@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login</title>
-
-    <!-- Inclua os arquivos Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -33,7 +31,6 @@
                             <button type="submit" class="btn btn-primary">Entrar</button>
                         </form>
 
-                        <!-- Adicione o link para a página de registro -->
                         <p class="mt-3 text-center">Ainda não tem uma conta? <a href="cadastrar.php">Registrar-se</a></p>
 
                     </div>
