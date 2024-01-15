@@ -9,35 +9,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #f8f9fa;">
-        <a class="navbar-brand" href="#">Sistema de Pedidos</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../templates/dashboard.php">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../templates/registrar_pedido.php">Registrar Pedido</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../templates/adicionar_cliente.php">Adicionar Cliente</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../templates/visualizar_produtos.php">Meus Produtos</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="../templates/sair.php">
-                        <button class="btn btn-danger" style="color: #ffffff;">Sair</button>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php include('menu.php') ?>
 
     <div class="container mt-5">
         <div class="row">
@@ -66,7 +38,7 @@
 
                             if ($itensPedido) {
                                 $valorTotalPedido = 0;
-                        
+
                                 foreach ($itensPedido as $item) {
                                     $valorTotalPedido += $item['valor_produto'];
                                 }
@@ -77,17 +49,17 @@
                                 $stmtUpdatePedido->execute();
 
 
-                            if ($rowPedido) {
-                                echo "<p><strong>Código:</strong> " .  $rowPedido['id'] . "</p>";
-                                echo "<p><strong>Valor Total:</strong> " . number_format($valorTotalPedido, 2, ',', '.') . "</p>";
-                                echo "<p><strong>Status:</strong> " . $rowPedido['status'] . "</p>";
+                                if ($rowPedido) {
+                                    echo "<p><strong>Código:</strong> " .  $rowPedido['id'] . "</p>";
+                                    echo "<p><strong>Valor Total:</strong> " . number_format($valorTotalPedido, 2, ',', '.') . "</p>";
+                                    echo "<p><strong>Status:</strong> " . $rowPedido['status'] . "</p>";
+                                } else {
+                                    echo "<p class='text-danger'>Pedido não encontrado.</p>";
+                                }
                             } else {
-                                echo "<p class='text-danger'>Pedido não encontrado.</p>";
+                                echo "<p class='text-danger'>ID do pedido não fornecido.</p>";
                             }
-                        } else {
-                            echo "<p class='text-danger'>ID do pedido não fornecido.</p>";
                         }
-                    }
                         ?>
                     </div>
                 </div>
