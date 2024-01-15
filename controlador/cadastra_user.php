@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(":email", $email);
     $stmt->bindParam(":usuario", $usuario);
     $stmt->bindParam(":senha", $senhaHash);
+    $stmt->execute();
 
     try {
         $stmt->execute();

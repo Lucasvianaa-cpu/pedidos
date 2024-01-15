@@ -27,6 +27,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../templates/registrar_pedido.php">Registrar Pedido</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../templates/adicionar_cliente.php">Adicionar Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../templates/visualizar_produtos.php">Meus Produtos</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">

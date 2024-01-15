@@ -26,6 +26,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../templates/registrar_pedido.php">Registrar Pedido</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../templates/adicionar_cliente.php">Adicionar Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../templates/visualizar_produtos.php">Meus Produtos</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -101,14 +107,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('verPedidoBtn').addEventListener('click', function() {
-                console.log('Clicou no botão!'); 
+                console.log('Clicou no botão!');
 
                 var queryString = window.location.search;
                 var urlParams = new URLSearchParams(queryString);
                 var pedidoId = urlParams.get('pedido_id');
 
                 if (pedidoId) {
-                    console.log('ID do pedido:', pedidoId); 
+                    console.log('ID do pedido:', pedidoId);
                     window.location.href = 'visualizar_pedido.php?id=' + pedidoId;
                 } else {
                     console.error('ID do pedido não encontrado na URL.');
