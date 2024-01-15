@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $valor_produto = $_POST["valor_produto"];
 
     // Insere o item do pedido no banco de dados
+    $valor_produto = str_replace(',', '.', $valor_produto);
+
+    
     $queryItemPedido = "INSERT INTO itempedido (pedido_id, produto_id, quantidade, valor_produto) VALUES (:pedido_id, :produto_id, :quantidade, :valor_produto)";
     $stmtItemPedido = $conexao->prepare($queryItemPedido);
     $stmtItemPedido->bindParam(":pedido_id", $pedido_id);
