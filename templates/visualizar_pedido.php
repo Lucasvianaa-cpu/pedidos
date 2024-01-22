@@ -36,6 +36,14 @@
                             $stmtItensPedido->execute();
                             $itensPedido = $stmtItensPedido->fetchAll(PDO::FETCH_ASSOC);
 
+                            $clienteId = $rowPedido['cliente_id'];
+                            $queryCliente = "SELECT nome, sobrenome FROM CLIENTES WHERE id = :clienteId";
+                            $stmtCliente = $conexao->prepare($queryCliente);
+                            $stmtCliente->bindParam(':clienteId', $clienteId, PDO::PARAM_INT);
+                            $stmtCliente->execute();
+                            $dadosCliente = $stmtCliente->fetch(PDO::FETCH_ASSOC);
+
+
                             if ($itensPedido) {
                                 $valorTotalPedido = 0;
 
@@ -51,6 +59,7 @@
 
                                 if ($rowPedido) {
                                     echo "<p><strong>Código:</strong> " .  $rowPedido['id'] . "</p>";
+                                    echo "<p><strong>Cliente:</strong> " .  $dadosCliente['nome'] . " " . $dadosCliente['sobrenome'] . "</p>";
                                     echo "<p><strong>Valor Total:</strong> " . number_format($valorTotalPedido, 2, ',', '.') . "</p>";
                                     echo "<p><strong>Status:</strong> " . $rowPedido['status'] . "</p>";
                                 } else {

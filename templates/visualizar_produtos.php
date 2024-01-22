@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <?php include ('menu.php') ?>
+    <?php include('menu.php') ?>
 
     <div class="container mt-5">
         <div class="row">
@@ -18,14 +18,18 @@
                     <div class="card-body">
                         <h5 class="card-title">Listagem de Produtos</h5>
                         <form action="../templates/cadastrar_produto.php" method="post">
-                            <button type="submit" class="btn btn-primary mt-4 mb-4">Cadastrar Produto</button>
+                            <div class="mt-4 mb-4">
+                                <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+                                <button type="submit" formaction="../templates/manutencao_estoque.php" class="btn btn-primary ml-2">Manutenção de Estoque</button>
+                            </div>
                         </form>
+
 
                         <?php
 
                         include('../config/config.php');
 
-                        $queryProdutos = "SELECT * FROM PRODUTOS";
+                        $queryProdutos = "SELECT * FROM PRODUTOS WHERE ativo = 1";
 
                         $stmtProdutos = $conexao->prepare($queryProdutos);
                         $stmtProdutos->execute();
@@ -40,6 +44,7 @@
                                     <th>Saldo em Estoque</th>
                                     <th>Preço do Produto</th>
                                     <th>Valor Total do Item</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>";
@@ -53,6 +58,11 @@
                                     <td>{$item['saldo_estoque']}</td>
                                     <td>" . number_format($item['preco_venda'], 2, ',', '.') . "</td>
                                     <td>" . number_format($valorTotalItem, 2, ',', '.') . "</td>
+                                    <td>
+                                        <a href='../templates/editar_produto.php?id={$item['id']}' class='btn btn-warning'>Editar</a>
+                                        <a href='../templates/visualizar_produto.php?id={$item['id']}' class='btn btn-info'>Visualizar</a>
+                                        <a href='../templates/excluir_produto.php?id={$item['id']}' class='btn btn-danger'>Excluir</a>
+                                    </td>
                                 </tr>";
                             }
 

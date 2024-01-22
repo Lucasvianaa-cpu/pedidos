@@ -12,7 +12,7 @@
                 <a class="nav-link" href="../templates/registrar_pedido.php">Registrar Pedido</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../templates/adicionar_cliente.php">Adicionar Cliente</a>
+                <a class="nav-link" href="../templates/visualizar_clientes.php">Meus Clientes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../templates/visualizar_produtos.php">Meus Produtos</a>
