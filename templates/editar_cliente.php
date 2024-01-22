@@ -51,6 +51,14 @@ if (isset($_GET['id'])) {
                                         <label for="celular">Celular:</label>
                                         <input type="text" class="form-control" id="celular" name="celular" value="<?php echo $dadosCliente['celular']; ?>" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="cep">CEP:</label>
+                                        <input type="text" class="form-control" id="cep" name="cep" value="<?php echo $dadosCliente['cep']; ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="endereco_completo">Endereço Completo:</label>
+                                        <input type="text" class="form-control" id="endereco_completo" name="endereco_completo" value="<?php echo $dadosCliente['endereco_completo']; ?>" required>
+                                    </div>
 
                                     <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                                 </form>

@@ -20,18 +20,37 @@
                         <form action="../templates/cadastrar_produto.php" method="post">
                             <div class="mt-4 mb-4">
                                 <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
-                                <button type="submit" formaction="../templates/manutencao_estoque.php" class="btn btn-primary ml-2">Manutenção de Estoque</button>
+                                <button type="submit" formaction="../templates/manutencao_estoque.php"
+                                    class="btn btn-primary ml-2">Manutenção de Estoque</button>
                             </div>
                         </form>
 
-
                         <?php
-
                         include('../config/config.php');
 
-                        $queryProdutos = "SELECT * FROM PRODUTOS WHERE ativo = 1";
+                        // Defina a quantidade de produtos por página
+                        $produtosPorPagina = 5;
 
+                        // Obtenha o número total de produtos
+                        $queryTotalProdutos = "SELECT COUNT(*) AS total FROM PRODUTOS WHERE ativo = 1";
+                        $stmtTotalProdutos = $conexao->prepare($queryTotalProdutos);
+                        $stmtTotalProdutos->execute();
+                        $totalProdutos = $stmtTotalProdutos->fetch(PDO::FETCH_ASSOC)['total'];
+
+                        // Calcule o número total de páginas
+                        $totalPaginas = ceil($totalProdutos / $produtosPorPagina);
+
+                        // Obtenha a página atual
+                        $paginaAtual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+
+                        // Calcule o índice de início para a consulta SQL
+                        $indiceInicio = ($paginaAtual - 1) * $produtosPorPagina;
+
+                        // Consulta SQL modificada com LIMIT para paginação
+                        $queryProdutos = "SELECT * FROM PRODUTOS WHERE ativo = 1 LIMIT :indiceInicio, :produtosPorPagina";
                         $stmtProdutos = $conexao->prepare($queryProdutos);
+                        $stmtProdutos->bindParam(':indiceInicio', $indiceInicio, PDO::PARAM_INT);
+                        $stmtProdutos->bindParam(':produtosPorPagina', $produtosPorPagina, PDO::PARAM_INT);
                         $stmtProdutos->execute();
                         $itensProdutos = $stmtProdutos->fetchAll(PDO::FETCH_ASSOC);
 
@@ -68,15 +87,25 @@
 
                             echo "</tbody>
                         </table>";
+
+                            // Adicione a navegação da página
+                            echo "<nav aria-label='Page navigation example'>
+                                    <ul class='pagination'>";
+
+                            for ($i = 1; $i <= $totalPaginas; $i++) {
+                                echo "<li class='page-item " . ($i == $paginaAtual ? 'active' : '') . "'>
+                                        <a class='page-link' href='?pagina={$i}'>{$i}</a>
+                                      </li>";
+                            }
+
+                            echo "</ul>
+                                </nav>";
                         } else {
                             echo "<p class='text-info'>Nenhum item encontrado na listagem de produtos.</p>";
                         }
                         ?>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
